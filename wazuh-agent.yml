@@ -1,0 +1,16 @@
+- hosts: 78.47.167.102
+  roles:
+    - wazuh/wazuh-agent-role
+  vars:
+    wazuh_managers:
+      - address: '{{ address }}'
+        port: 64354
+        protocol: tcp
+        api_port: 55000
+        api_proto: 'https'
+        api_user: null
+    wazuh_agent_authd:
+      enable: true
+      port: 64355
+      ssl_agent_ca: null
+      ssl_auto_negotiate: 'no'
