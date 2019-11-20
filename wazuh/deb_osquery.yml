@@ -1,0 +1,55 @@
+---
+- hosts: 78.47.186.169 
+  tasks:
+
+      - name: Remove alienvault-agent
+        apt:
+          name: alienvault-agent
+          state: absent
+          purge: yes
+
+      - name: add keys
+        apt_key:
+            id: 1484120AC4E9F8A1A577AEEE97A80C63C9D8B80B
+            state: present
+            keyserver: keyserver.ubuntu.com
+
+      - name: add apt repository
+        apt_repository:
+            repo: "deb [arch=amd64] https://pkg.osquery.io/deb deb main" 
+            state: present
+
+      - name: apt update
+        apt: update_cache=yes cache_valid_time=3600
+        register: apt_result
+        until: apt_result|success
+        retries: 3
+        delay: 1
+        ignore_errors: yes
+     
+      - name: Install OSQuery
+        apt:
+          name: osquery
+          state: latest
+
+      - name: copy osqueryd.conf to correct folder
+        copy:
+            src: ./conf/
+            dest: /etc/osquery/
+
+      - name: copy osqueryd to correct logrotate.d folder
+        copy:
+            src: ./logrotate.d/osqueryd
+            dest: /etc/logrotate.d/
+
+
+      - name: Restart service osqueryd, in all cases
+        service:
+               name: osqueryd
+               state: restarted
+               enabled: yes
+
+
+
+
+

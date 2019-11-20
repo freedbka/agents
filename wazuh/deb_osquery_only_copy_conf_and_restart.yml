@@ -1,0 +1,19 @@
+---
+- hosts: 10.0.8.2
+  tasks:
+
+      - name: copy osqueryd.conf to correct folder
+        copy:
+            src: ./conf/
+            dest: /etc/osquery/
+
+      - name: Restart service osqueryd, in all cases
+        service:
+               name: osqueryd
+               state: restarted
+               enabled: yes
+
+
+
+
+

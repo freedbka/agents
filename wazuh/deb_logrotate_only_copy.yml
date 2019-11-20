@@ -1,0 +1,19 @@
+---
+- hosts: 10.150.152.110
+  tasks:
+
+      - name: copy osqueryd to correct logrotate.d folder
+        copy:
+            src: ./logrotate.d/osqueryd
+            dest: /etc/logrotate.d/
+
+      - name: copy suricata to correct logrotate.d folder
+        copy:
+            src: ./logrotate.d/osqueryd
+            dest: /etc/logrotate.d/
+
+
+
+
+
+

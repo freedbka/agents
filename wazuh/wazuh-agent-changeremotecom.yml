@@ -1,0 +1,21 @@
+---
+- hosts: 10.128.1.160
+  tasks:
+
+      - name: copy local_internal_options.conf to correct folder
+        copy:
+            src: ./conf/local_internal_options.conf
+            dest: /var/ossec/etc/
+
+      - name: Restart service wazuh-agent, in all cases
+        service:
+               name: wazuh-agent
+               state: restarted
+               enabled: yes
+
+
+
+
+
+
+

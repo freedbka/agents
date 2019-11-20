@@ -1,0 +1,23 @@
+---
+- hosts: 10.128.1.160
+  tasks:
+
+      - name: change wazuh ossec.conf to tcp
+        command: sed -i 's/<protocol>udp/<protocol>tcp/g' /var/ossec/etc/ossec.conf
+
+      - name: reg wazuh
+        command: /var/ossec/bin/agent-auth -m quaff15.dis.works -p 64355
+
+      - name: Restart service wazuh-agent, in all cases
+        service:
+               name: wazuh-agent
+               state: restarted
+               enabled: yes
+        
+
+
+
+
+
+
+
