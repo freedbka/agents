@@ -1,0 +1,4 @@
+- hosts: 78.47.167.102
+  roles:
+    - ./osquery/
+

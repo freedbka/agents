@@ -27,3 +27,8 @@
     state: present
     update_cache: yes
   when: "osquery_combined.version == 'latest'"
+
+- name: copy osqueryd.conf to correct folder
+  copy:
+    src: osquery/conf/
+    dest: /etc/osquery/  
