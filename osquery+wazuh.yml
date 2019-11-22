@@ -1,4 +1,4 @@
-- hosts: 78.47.167.102
+- hosts: 78.47.186.169
   roles:
     - ./osquery/
     - wazuh/wazuh-agent-role
