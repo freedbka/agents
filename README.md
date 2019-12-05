@@ -15,3 +15,11 @@
 ---------------------------------------------
 Для начала установки wazuh + osquery запускаем плейбук в таком виде
 * ```ansible-playbook osquery+wazuh.yml --extra-vars "Адресс Сервера wazuh" -u root```
+
+В данной сборке в конфиге ./agents/wazuh/wazuh-agent-role/templateslocal_internal_options.conf указанны параметры которые не позволяют серверу делать что-либо на стороне агента
+```
+agent.remote_conf=0
+logcollector.remote_commands=0
+sca.remote_commands=0
+wazuh_command.remote_commands=0
+```
